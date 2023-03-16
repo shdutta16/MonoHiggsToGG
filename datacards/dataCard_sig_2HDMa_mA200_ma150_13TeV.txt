@@ -1,0 +1,50 @@
+
+## Signal: sig_2HDMa_mA200_ma150_13TeV - 13TeV
+##
+----------------------------------------------------------------------------------------------------------------------------------
+imax * number of channels
+jmax * number of backgrounds
+kmax * number of nuisance parameters (source of systematic uncertainties)
+----------------------------------------------------------------------------------------------------------------------------------
+shapes sig           met130_150  sig_2HDMa_mA200_ma150_13TeV.root      wtemplates:model_signal_sig_2HDMa_mA200_ma150_13TeV_met130_150 wtemplates:model_signal_sig_2HDMa_mA200_ma150_13TeV_met130_150_$SYSTEMATIC
+shapes ggh           met130_150  GluGluHToGG_mA_200p0_13TeV.root       wtemplates:model_higgs_GluGluHToGG_mA_200p0_13TeV_met130_150 wtemplates:model_higgs_GluGluHToGG_mA_200p0_13TeV_met130_150_$SYSTEMATIC
+shapes vbf           met130_150  VBFHToGG_mA_200p0_13TeV.root          wtemplates:model_higgs_VBFHToGG_mA_200p0_13TeV_met130_150 wtemplates:model_higgs_VBFHToGG_mA_200p0_13TeV_met130_150_$SYSTEMATIC
+shapes vh            met130_150  VHToGG_mA_200p0_13TeV.root            wtemplates:model_higgs_VHToGG_mA_200p0_13TeV_met130_150 wtemplates:model_higgs_VHToGG_mA_200p0_13TeV_met130_150_$SYSTEMATIC
+shapes tth           met130_150  ttHJetToGG_mA_200p0_13TeV.root        wtemplates:model_higgs_ttHJetToGG_mA_200p0_13TeV_met130_150 wtemplates:model_higgs_ttHJetToGG_mA_200p0_13TeV_met130_150_$SYSTEMATIC
+shapes bkg           met130_150  ntuples4fit_pho_newSig_test_metBins_130_150_cic_default_shapes_lumi_59.69_MonoHgg.root wtemplates:model_bkg_met130_150
+shapes data_obs      met130_150  ntuples4fit_pho_newSig_test_metBins_130_150_cic_default_shapes_lumi_59.69_MonoHgg.root wtemplates:data_met130_150
+shapes sig           met150  sig_2HDMa_mA200_ma150_13TeV.root          wtemplates:model_signal_sig_2HDMa_mA200_ma150_13TeV_met150 wtemplates:model_signal_sig_2HDMa_mA200_ma150_13TeV_met150_$SYSTEMATIC
+shapes ggh           met150  GluGluHToGG_mA_200p0_13TeV.root           wtemplates:model_higgs_GluGluHToGG_mA_200p0_13TeV_met150 wtemplates:model_higgs_GluGluHToGG_mA_200p0_13TeV_met150_$SYSTEMATIC
+shapes vbf           met150  VBFHToGG_mA_200p0_13TeV.root              wtemplates:model_higgs_VBFHToGG_mA_200p0_13TeV_met150 wtemplates:model_higgs_VBFHToGG_mA_200p0_13TeV_met150_$SYSTEMATIC
+shapes vh            met150  VHToGG_mA_200p0_13TeV.root                wtemplates:model_higgs_VHToGG_mA_200p0_13TeV_met150 wtemplates:model_higgs_VHToGG_mA_200p0_13TeV_met150_$SYSTEMATIC
+shapes tth           met150  ttHJetToGG_mA_200p0_13TeV.root            wtemplates:model_higgs_ttHJetToGG_mA_200p0_13TeV_met150 wtemplates:model_higgs_ttHJetToGG_mA_200p0_13TeV_met150_$SYSTEMATIC
+shapes bkg           met150  ntuples4fit_pho_newSig_test_metBins_130_150_cic_default_shapes_lumi_59.69_MonoHgg.root wtemplates:model_bkg_met150
+shapes data_obs      met150  ntuples4fit_pho_newSig_test_metBins_130_150_cic_default_shapes_lumi_59.69_MonoHgg.root wtemplates:data_met150
+----------------------------------------------------------------------------------------------------------------------------------
+bin                  met130_150             met150            
+observation          -1             -1            
+----------------------------------------------------------------------------------------------------------------------------------
+bin                  met130_150     met130_150     met130_150     met130_150     met130_150     met130_150     met150         met150         met150         met150         met150         met150        
+process              sig            ggh            vbf            vh             tth            bkg            sig            ggh            vbf            vh             tth            bkg           
+process              0              1              2              3              4              5              0              1              2              3              4              5             
+rate                 1              1              1              1              1              1              1              1              1              1              1              1             
+----------------------------------------------------------------------------------------------------------------------------------
+lumi  lnN            1.023          1.023          1.023          1.023          1.023          -              1.023          1.023          1.023          1.023          1.023          -             
+eff  lnN             1.03           1.03           1.03           1.03           1.03           -              1.03           1.03           1.03           1.03           1.03           -             
+hgg_BR_theo  lnN     0.9828/1.0173  0.9828/1.0173  0.9828/1.0173  0.9828/1.0173  0.9828/1.0173  -              0.9828/1.0173  0.9828/1.0173  0.9828/1.0173  0.9828/1.0173  0.9828/1.0173  -             
+hgg_BR_mq  lnN       0.9901/1.0093  0.9901/1.0093  0.9901/1.0093  0.9901/1.0093  0.9901/1.0093  -              0.9901/1.0093  0.9901/1.0093  0.9901/1.0093  0.9901/1.0093  0.9901/1.0093  -             
+hgg_xsec_theo  lnN   -              0.8/1.2        0.979/1.021    0.975/1.025    0.964/1.036    -              -              0.8/1.2        0.979/1.021    0.975/1.025    0.964/1.036    -             
+RealMet  lnN         0.9925/1.0094  -              -              0.9891/1.0181  0.9891/1.0181  -              0.9925/1.0094  -              -              0.9891/1.0181  0.9891/1.0181  -             
+FakeMet  lnN         -              0.5/1.5        0.5/1.5        -              -              -              -              0.5/1.5        0.5/1.5        -              -              -             
+DPhiGGMET  lnN       -              0.96/1.04      0.96/1.04      -              -              -              -              0.96/1.04      0.96/1.04      -              -              -             
+DPhiJMET  lnN        -              0.99/1.01      0.99/1.01      -              -              -              -              0.99/1.01      0.99/1.01      -              -              -             
+energyScalemet150 shape -              -              -              -              -              -              1              1              1              1              1              -             
+energyScalemet130_150 shape 1              1              1              1              1              -              -              -              -              -              -              -             
+
+
+
+
+#pow_model_bkg_met130_150_lin flatParam
+#pow_model_bkg_met150_lin flatParam
+----------------------------------------------------------------------------------------------------------------------------------
+
