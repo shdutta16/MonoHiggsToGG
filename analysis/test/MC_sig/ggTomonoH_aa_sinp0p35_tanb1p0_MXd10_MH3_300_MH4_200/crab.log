@@ -1,0 +1,32 @@
+DEBUG 2023-03-22 19:45:03.645 UTC: 	 CRAB Client version: v3.230124
+DEBUG 2023-03-22 19:45:03.645 UTC: 	 Running on: Linux lxplus773.cern.ch 3.10.0-1160.83.1.el7.x86_64 #1 SMP Wed Jan 25 16:41:43 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2023-03-22 19:45:03.645 UTC: 	 Executing command: 'submit'
+DEBUG 2023-03-22 19:45:03.646 UTC: 	 Found CRAB cache file /afs/cern.ch/user/s/shdutta/.crab3
+DEBUG 2023-03-22 19:47:47.382 UTC: 	 CRAB Client version: v3.230124
+DEBUG 2023-03-22 19:47:47.382 UTC: 	 Running on: Linux lxplus773.cern.ch 3.10.0-1160.83.1.el7.x86_64 #1 SMP Wed Jan 25 16:41:43 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2023-03-22 19:47:47.382 UTC: 	 Executing command: 'submit'
+DEBUG 2023-03-22 19:47:47.382 UTC: 	 Found CRAB cache file /afs/cern.ch/user/s/shdutta/.crab3
+INFO 2023-03-22 19:47:47.383 UTC: 	 Will use CRAB configuration file Crabconfig.py
+DEBUG 2023-03-22 19:47:47.383 UTC: 	 Loading CRAB configuration file.
+DEBUG 2023-03-22 19:47:47.387 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2023-03-22 19:47:47.388 UTC: 	 Working area '/afs/cern.ch/work/s/shdutta/public/Analysis/MHgg/2018Analysis_reloaded/CMSSW_10_6_29/src/MonoHiggsToGG/analysis/test/MC_sig/ggTomonoH_aa_sinp0p35_tanb1p0_MXd10_MH3_300_MH4_200/crab_ggTomonoH_aa_sinp0p35_tanb1p0_MXd10_MH3_300_MH4_200' already exists 
+Please change the requestName in the config file
+ERROR 2023-03-22 19:47:47.388 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.230124.00/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.230124.00/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.230124.00/lib/CRABClient/Commands/submit.py", line 36, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.230124.00/lib/CRABClient/Commands/SubCommand.py", line 320, in __init__
+    getattr(self.configuration.General, 'requestName', None))
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.230124.00/lib/CRABClient/ClientUtilities.py", line 387, in createWorkArea
+    raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
+ConfigException: Working area '/afs/cern.ch/work/s/shdutta/public/Analysis/MHgg/2018Analysis_reloaded/CMSSW_10_6_29/src/MonoHiggsToGG/analysis/test/MC_sig/ggTomonoH_aa_sinp0p35_tanb1p0_MXd10_MH3_300_MH4_200/crab_ggTomonoH_aa_sinp0p35_tanb1p0_MXd10_MH3_300_MH4_200' already exists 
+Please change the requestName in the config file
+INFO 2023-03-22 19:47:47.389 UTC: 	 Log file is /afs/cern.ch/work/s/shdutta/public/Analysis/MHgg/2018Analysis_reloaded/CMSSW_10_6_29/src/MonoHiggsToGG/analysis/test/MC_sig/ggTomonoH_aa_sinp0p35_tanb1p0_MXd10_MH3_300_MH4_200/crab.log
+DEBUG 2023-03-22 19:48:00.983 UTC: 	 CRAB Client version: v3.230124
+DEBUG 2023-03-22 19:48:00.984 UTC: 	 Running on: Linux lxplus773.cern.ch 3.10.0-1160.83.1.el7.x86_64 #1 SMP Wed Jan 25 16:41:43 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2023-03-22 19:48:00.984 UTC: 	 Executing command: 'resubmit'
+DEBUG 2023-03-22 19:48:00.984 UTC: 	 Found CRAB cache file /afs/cern.ch/user/s/shdutta/.crab3

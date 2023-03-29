@@ -1,0 +1,57 @@
+#! /bin/sh
+
+#path="/afs/cern.ch/work/m/mzientek/public/25ns_v80X_moriond17_v3/"
+#path="../../macro/data/25ns_v80X_v5/"
+
+#path="/eos/user/d/dbhowmik/Analysis/Bkg/newID_rightPU/WeightTest2/"
+path="/eos/cms/store/group/phys_egamma/shdutta/2018Analysis/WorkCopy/"
+#path="/eos/cms
+
+weight=$1
+
+#addWeights(${weight},"${path}","nTuple_GluGluHToGG_EOY", 0.075818);
+#addWeights(${weight},"${path}","nTuple_VBFHToGG_EOY", 0.00906184); #These numbers are from xsecAnalyzer, now using numbers(below) from twiki(https://twiki.cern.ch/twiki/bin/view/LHCPhysics/CERNHLHE2019)
+#addWeights(${weight},"${path}","nTuple_VHToGG_EOY", 0.0056114);
+#addWeights(${weight},"${path}","nTuple_ttHJetToGG_EOY", 0.001575);
+
+#addWeights(${weight},"${path}","nTuple_QCD_Pt-30to40_EOY", 25060.0); Commented by Shubham
+
+root -l -b << EOF
+.L ../scripts/myaddWeights.C++
+
+addWeights(${weight},"${path}","nTuple_DoubleEG", 1);
+
+addWeights(${weight},"${path}","nTuple_GluGluHToGG", 0.1103447);
+addWeights(${weight},"${path}","nTuple_VBFHToGG", 0.00854882);
+addWeights(${weight},"${path}","nTuple_VHToGG", 0.00308266);
+addWeights(${weight},"${path}","nTuple_ttHJetToGG", 0.001391056);
+
+addWeights(${weight},"${path}","nTuple_DiPhotonJetsBox", 87.83);
+addWeights(${weight},"${path}","nTuple_DYJetsToLL", 6522.0);
+
+addWeights(${weight},"${path}","nTuple_GJet_Pt-20to40", 233.9);
+addWeights(${weight},"${path}","nTuple_GJet_Pt-40toInf", 873.2);
+addWeights(${weight},"${path}","nTuple_GJet_Pt-20toInf", 3168.0);
+
+addWeights(${weight},"${path}","nTuple_QCD_Pt-40toInf", 117600.0);
+addWeights(${weight},"${path}","nTuple_QCD_Pt-30toInf", 242500.0);
+
+addWeights(${weight},"${path}","nTuple_TTGJets", 4.118);
+addWeights(${weight},"${path}","nTuple_TTGG_0Jets", 0.01687);
+addWeights(${weight},"${path}","nTuple_TTJets", 727.8);
+addWeights(${weight},"${path}","nTuple_TGJets", 3.055);
+
+addWeights(${weight},"${path}","nTuple_WGToLNuG", 461.2);
+addWeights(${weight},"${path}","nTuple_TTWJetsToLNu", 0.213);
+
+addWeights(${weight},"${path}","nTuple_2017_2HDMa_mA200_ma150_EOY", 0.000738431);
+addWeights(${weight},"${path}","nTuple_2017_2HDMa_mA300_ma150_EOY", 0.00364562);
+addWeights(${weight},"${path}","nTuple_2017_2HDMa_mA400_ma150_EOY", 0.00224049);
+addWeights(${weight},"${path}","nTuple_2017_2HDMa_mA500_ma150_EOY", 0.001151798);
+addWeights(${weight},"${path}","nTuple_2017_2HDMa_mA600_ma150_EOY", 0.000677368);
+
+.q
+
+EOF
+
+echo "Finished adding weights!"

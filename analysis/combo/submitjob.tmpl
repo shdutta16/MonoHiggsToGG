@@ -1,0 +1,24 @@
+#!/bin/sh
+
+#export X509_USER_PROXY=/afs/cern.ch/user/m/mzientek/x509up_u28679
+
+ANA_DIR=$CMSSW_BASE/src/
+RUN_DIR=$CMSSW_BASE/src/HiggsAnalysis/CombinedLimit/CombineHarvester/MonoHCombo/combo_2HDM_bash_clean/
+#ANA_DIR=/afs/cern.ch/work/m/mzientek/private/ggttCombination/CMSSW_7_4_7/src/
+#RUN_DIR=/afs/cern.ch/work/m/mzientek/private/ggttCombination/CMSSW_7_4_7/src/HiggsAnalysis/CombinedLimit/CombineHarvester/CombineTools/scripts/MonoHCombo/combo_2HDM_bash_clean/
+
+cd $ANA_DIR
+eval `scram runtime -sh`
+cd $RUN_DIR
+
+echo "run job!"
+./runCombineCards.sh MODEL MASS
+echo "done running job!" 
+#xrdcp OUTPUT_FILE root://eoscms.cern.ch//eos/cms/store/user/mzientek/MonoHCombo_2HDM/
+#echo "... done, remove files locally" 
+#rm OUTPUT_FILE
+
+echo "removing potential core dump file!"
+rm core.*
+
+echo "all done successfully!"
