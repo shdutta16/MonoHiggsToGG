@@ -31,6 +31,7 @@ using namespace edm;
 
 
 namespace flashgg {
+    namespace MHgg {
 
     std::vector<edm::Ptr<flashgg::Muon> > selectMuons( const std::vector<edm::Ptr<flashgg::Muon> > &muonPointers, Ptr<flashgg::DiPhotonCandidate> dipho,
             const std::vector<edm::Ptr<reco::Vertex> > &vertexPointers, double muonEtaThreshold, double muonPtThreshold, double muPFIsoSumRelThreshold,
@@ -109,6 +110,7 @@ namespace flashgg {
     
     vector<bool> EgammaIDs(const edm::Ptr<flashgg::Electron> &elec, const std::vector<edm::Ptr<reco::Vertex> > &vertexPointers, double rho );
     bool phoVeto(   const Ptr<flashgg::Electron> electron , const Ptr<flashgg::DiPhotonCandidate> diphoton, float deltaRPhoElectronThreshold, float DeltaRTrkElec, float deltaMassElectronZThreshold);
+}
 }
 
 #endif

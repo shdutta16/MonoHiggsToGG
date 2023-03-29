@@ -1,4 +1,4 @@
-#include "flashgg/Taggers/interface/LeptonSelection.h"
+#include "flashgg/Taggers/interface/LeptonSelection_MHgg.h"
 #include "DataFormats/EgammaCandidates/interface/GsfElectron.h"
 #include "TLorentzVector.h"
 
@@ -7,6 +7,9 @@ using namespace edm;
 
 
 namespace flashgg {
+
+namespace MHgg {
+
 
     std::vector<edm::Ptr<flashgg::Muon> > selectAllMuons( const std::vector<edm::Ptr<flashgg::Muon> > &muonPointers, 
             const std::vector<edm::Ptr<reco::Vertex> > &vertexPointers, double muonEtaThreshold, double muonPtThreshold, double muPFIsoSumRelThreshold )
@@ -251,7 +254,7 @@ namespace flashgg {
         float elNonTrigMVA = elec->nonTrigMVA();
         bool passConversionVeto= elec->passConversionVeto();
         
-        int elMissedHits = elec->gsfTrack()->hitPattern().numberOfHits( reco::HitPattern::MISSING_INNER_HITS);
+        int elMissedHits = elec->gsfTrack()->hitPattern().numberOfAllHits( reco::HitPattern::MISSING_INNER_HITS);
 
         //for isolation recalculation        
         float Aeff = 0;
@@ -511,7 +514,7 @@ namespace flashgg {
             
             if( Electron->standardHggIso() > IsoThreshold ) continue; 
 
-            if( Electron->gsfTrack()->hitPattern().numberOfHits( reco::HitPattern::MISSING_INNER_HITS ) > NumOfMissingHitsThreshold ) { continue; }
+            if( Electron->gsfTrack()->hitPattern().numberOfAllHits( reco::HitPattern::MISSING_INNER_HITS ) > NumOfMissingHitsThreshold ) { continue; }
             //std::cout << "[DEBUG] passed  missing hits cut." << std::endl;
 
             if( Electron->hasMatchedConversion() ) continue; 
@@ -610,7 +613,7 @@ namespace flashgg {
             bool passIp  = passdz && passdxy;
 
             // conversion rejection
-            int missHits   = Electron->gsfTrack()->hitPattern().numberOfHits( reco::HitPattern::MISSING_INNER_HITS );
+            int missHits   = Electron->gsfTrack()->hitPattern().numberOfAllHits( reco::HitPattern::MISSING_INNER_HITS );
             bool matchConv = Electron->hasMatchedConversion();
             bool passmhits = missHits<=misshcut; 
             bool passConv  = !matchConv && passmhits;
@@ -711,7 +714,7 @@ namespace flashgg {
             bool passIp  = passdz && passdxy;
 
             // conversion rejection
-            int missHits   = Electron->gsfTrack()->hitPattern().numberOfHits( reco::HitPattern::MISSING_INNER_HITS );
+            int missHits   = Electron->gsfTrack()->hitPattern().numberOfAllHits( reco::HitPattern::MISSING_INNER_HITS );
             bool matchConv = Electron->hasMatchedConversion();
             bool passmhits = missHits<=misshcut; 
             bool passConv  = !matchConv && passmhits;
@@ -909,6 +912,8 @@ namespace flashgg {
         }
         return vertices[min_dz_vtx];
     }
+
+}
 }
 
 // Local Variables:
