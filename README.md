@@ -14,4 +14,12 @@
    source flashgg/setup_flashgg.sh
    ```
    
-2. Get MonoHiggsToGG (after following above steps)
+2. Get MonoHiggsToGG (after following above steps) by cloning this repo: `git clone https://github.com/shdutta16/MonoHiggsToGG.git`
+
+3. Copy the `leptonSelection` from MonoHiggsToGG setup to flashgg setup. This contains additional methods that are used by MonoHiggsToGG.
+   ```
+   cp MonoHiggsToGG/analysis/addfiles/LeptonSelection.h flashgg/Taggers/interface/LeptonSelection_MHgg.h
+   cp MonoHiggsToGG/analysis/addfiles/LeptonSelection.cc flashgg/Taggers/src/LeptonSelection_MHgg.cc
+   ```
+   
+4. Build: `scram b -j 10`
