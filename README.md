@@ -23,3 +23,14 @@
    ```
    
 4. Build: `scram b -j 10`
+
+5. To run:
+   ```
+   cd $CMSSW_BASE/src
+   cd MonoHiggsToGG/analysis/test/MC_sig/ggTomonoH_aa_sinp0p35_tanb1p0_MXd10_MH3_300_MH4_200/
+   cmsenv
+   cmsRun diPhoAna_2018.py
+   ```
+6. This will create the ntuple `diPhotons_legacy2018.root`.
+
+
