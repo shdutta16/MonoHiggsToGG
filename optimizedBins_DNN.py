@@ -1,6 +1,8 @@
 
 #effVsDNNplotter.py
 
+import sys
+import os
 import numpy as np
 
 
@@ -25,14 +27,16 @@ def signifiCalc( sigData, bkgData, cut, debug=False):     # cut is the value of 
         s_1 = sigTotal - sigData[cut_index,1]     # sig events between 0 and ith cut
         b_1 = bkgTotal - bkgData[cut_index,1]     # bkg events between 0 and ith cut
         if( s_1 == 0.0 or b_1 == 0.0 ): continue  # if either sig or bkg is 0 continue
-        signifi_1 = s_1/np.sqrt(s_1+b_1)
+        #signifi_1 = s_1/np.sqrt(s_1+b_1)
+        signifi_1 = np.sqrt(2.*( (s_1+b_1)*np.log(1.+ (s_1/b_1)) - s_1) )
 
         s_2 = sigTotal-sigData[cut_lastIndex,1]-s_1  # sig events between ith cut and cut (preceding binEdge)
         b_2 = bkgTotal-bkgData[cut_lastIndex,1]-b_1  # bkg events between ith cut and cut (preceding binEdge)
         if( s_2 == 0.0 or b_2 == 0.0 ): continue     # if either sig or bkg is 0 continue
-        signifi_2 = s_2/np.sqrt(s_2+b_2)
+        #signifi_2 = s_2/np.sqrt(s_2+b_2)
+        signifi_2 = np.sqrt(2.*( (s_2+b_2)*np.log(1.+ (s_2/b_2)) - s_2) )
 
-        signifi = signifi_1 + signifi_2    # total significance
+        signifi = np.sqrt( signifi_1*signifi_1 + signifi_2*signifi_2 )    # total significance
 
         if(debug):
             print "cut = ",icut, "\tcut_index = ",cut_index
@@ -56,7 +60,11 @@ def signifiCalc( sigData, bkgData, cut, debug=False):     # cut is the value of 
 inDir  = "./DNN_efficiency_2/"    # directory with efficiency vs. DNN score files
 outDir = "./DNN_efficiency_2/"
 
-l_mA = [200, 300, 400, 500, 600]
+if( not os.path.isdir(outDir) ):
+    os.mkdir( outDir )
+
+#l_mA = [200, 300, 400, 500, 600]
+l_mA = [200]
 
 
 for imA in l_mA:
@@ -75,15 +83,16 @@ for imA in l_mA:
     print "mA = ",imA
 
     for i in range(10):
-        cuts_signifi = signifiCalc( sigData, bkgData, binEdge )      # call function to calculate significance vs. cuts
+        cuts_signifi = signifiCalc( sigData, bkgData, binEdge, True )      # call function to calculate significance vs. cuts
         binEdge = cuts_signifi['cut'][ cuts_signifi['signifi']==max(cuts_signifi['signifi']) ]            # get the cut where significance is maximum
-        significance += cuts_signifi['signifi'][ cuts_signifi['signifi']==max(cuts_signifi['signifi']) ]  # get the max significance value
-        print "i = ",i,"\tbinEdge = ",binEdge,"\tsignificance = ",significance
+        maxSignifi = cuts_signifi['signifi'][ cuts_signifi['signifi']==max(cuts_signifi['signifi']) ]     # get the max significance value
+        significance += maxSignifi * maxSignifi
+        print "i = ",i,"\tbinEdge = ",binEdge,"\tsignificance = ", np.sqrt(significance)
         if( binEdge == sigData[1,0] ):    # if the binEdge equals the first DNN score cut then break
             break
 
         arr_binEdge = np.append(arr_binEdge, binEdge)      # add the calculated binEdge to array
-        arr_signifi = np.append(arr_signifi, significance) # add the significance to the array
+        arr_signifi = np.append(arr_signifi, np.sqrt(significance) ) # add the significance to the array
 
         if( i==0 ):     # i=0 is the first scan so plot significance vs. DNN score for entire range
             nm_file = outDir+"significanceVsDNNscore_mA"+str(imA)+".txt"

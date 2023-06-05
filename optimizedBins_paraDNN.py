@@ -24,14 +24,17 @@ def signifiCalc( sigData, bkgData, cut, debug=False):
         s_1 = sigTotal - sigData[cut_index,1]
         b_1 = bkgTotal - bkgData[cut_index,1]
         if( s_1 == 0.0 or b_1 == 0.0 ): continue
-        signifi_1 = s_1/np.sqrt(s_1+b_1)
+        #signifi_1 = s_1/np.sqrt(s_1+b_1)
+        signifi_1 = np.sqrt(2.*( (s_1+b_1)*np.log(1.+ (s_1/b_1)) - s_1) )
+
 
         s_2 = sigTotal-sigData[cut_lastIndex,1]-s_1
         b_2 = bkgTotal-bkgData[cut_lastIndex,1]-b_1
         if( s_2 == 0.0 or b_2 == 0.0 ): continue
-        signifi_2 = s_2/np.sqrt(s_2+b_2)
+        #signifi_2 = s_2/np.sqrt(s_2+b_2)
+        signifi_2 = np.sqrt(2.*( (s_2+b_2)*np.log(1.+ (s_2/b_2)) - s_2) )
 
-        signifi = signifi_1 + signifi_2
+        signifi = np.sqrt( signifi_1*signifi_1 + signifi_2*signifi_2 )    # total significance
 
         if(debug):
             print "cut = ",icut, "\tcut_index = ",cut_index
@@ -76,13 +79,14 @@ for imA in l_mA:
     for i in range(10):
         cuts_signifi = signifiCalc( sigData, bkgData, binEdge )
         binEdge = cuts_signifi['cut'][ cuts_signifi['signifi']==max(cuts_signifi['signifi']) ][0]
-        significance += cuts_signifi['signifi'][ cuts_signifi['signifi']==max(cuts_signifi['signifi']) ][0]
-        print "i = ",i,"\tbinEdge = ",binEdge,"\tsignificance = ",significance
+        maxSignifi = cuts_signifi['signifi'][ cuts_signifi['signifi']==max(cuts_signifi['signifi']) ]     # get the max significance value
+        significance += maxSignifi * maxSignifi
+        print "i = ",i,"\tbinEdge = ",binEdge,"\tsignificance = ",np.sqrt(significance)
         if( binEdge == sigData[1,0] ):
             break
 
         arr_binEdge = np.append(arr_binEdge, binEdge)
-        arr_signifi = np.append(arr_signifi, significance)
+        arr_signifi = np.append(arr_signifi, np.sqrt(significance) )
 
         if( i==0 ):
             nm_file = outDir+"significanceVsDNNscore_mA"+str(imA)+".txt"
