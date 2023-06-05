@@ -63,8 +63,8 @@ outDir = "./DNN_efficiency_2/"
 if( not os.path.isdir(outDir) ):
     os.mkdir( outDir )
 
-#l_mA = [200, 300, 400, 500, 600]
-l_mA = [200]
+l_mA = [200, 300, 400, 500, 600]
+#l_mA = [200]
 
 
 for imA in l_mA:
