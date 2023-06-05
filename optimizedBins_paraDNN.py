@@ -79,7 +79,7 @@ for imA in l_mA:
     for i in range(10):
         cuts_signifi = signifiCalc( sigData, bkgData, binEdge )
         binEdge = cuts_signifi['cut'][ cuts_signifi['signifi']==max(cuts_signifi['signifi']) ][0]
-        maxSignifi = cuts_signifi['signifi'][ cuts_signifi['signifi']==max(cuts_signifi['signifi']) ]     # get the max significance value
+        maxSignifi = cuts_signifi['signifi'][ cuts_signifi['signifi']==max(cuts_signifi['signifi']) ][0]   # get the max significance value
         significance += maxSignifi * maxSignifi
         print "i = ",i,"\tbinEdge = ",binEdge,"\tsignificance = ",np.sqrt(significance)
         if( binEdge == sigData[1,0] ):

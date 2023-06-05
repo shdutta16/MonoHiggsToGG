@@ -83,9 +83,9 @@ for imA in l_mA:
     print "mA = ",imA
 
     for i in range(10):
-        cuts_signifi = signifiCalc( sigData, bkgData, binEdge, True )      # call function to calculate significance vs. cuts
-        binEdge = cuts_signifi['cut'][ cuts_signifi['signifi']==max(cuts_signifi['signifi']) ]            # get the cut where significance is maximum
-        maxSignifi = cuts_signifi['signifi'][ cuts_signifi['signifi']==max(cuts_signifi['signifi']) ]     # get the max significance value
+        cuts_signifi = signifiCalc( sigData, bkgData, binEdge )      # call function to calculate significance vs. cuts
+        binEdge = cuts_signifi['cut'][ cuts_signifi['signifi']==max(cuts_signifi['signifi']) ][0]           # get the cut where significance is maximum
+        maxSignifi = cuts_signifi['signifi'][ cuts_signifi['signifi']==max(cuts_signifi['signifi']) ][0]     # get the max significance value
         significance += maxSignifi * maxSignifi
         print "i = ",i,"\tbinEdge = ",binEdge,"\tsignificance = ", np.sqrt(significance)
         if( binEdge == sigData[1,0] ):    # if the binEdge equals the first DNN score cut then break
