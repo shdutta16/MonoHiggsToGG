@@ -1,0 +1,37 @@
+#ignore in files
+*.o
+*.pyc
+*.d
+*.so
+._*
+*__.*
+.#*
+*.pcm
+
+
+#ignore data and output plots
+*.root
+*.png
+*.pdf
+*.txt
+*.tex
+
+
+
+# Some examples of ignore
+
+#analysis/macro/main
+
+##ignore output of json parsing
+#analysis/scripts/list*/
+#*.list
+#*.json
+
+##ignore output from limit tools 
+#analysis/limits/2HDM/*
+
+##ignore files created by batch jobs
+#analysis/scripts/job*
+
+
+
