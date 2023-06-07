@@ -15,12 +15,15 @@ Instructions:
 9. Execute:
    ```
    cmsenv
-   ./run_combineMakerMonoHgg.sh <directory created in steps 5-6>
+   ./run_combineMakerMonoHgg.sh <directory_created_in_steps_5-6>
    ./run_myCombineAllMonoHiggs2HDMa.sh
    ./run_limitPlotsMonoHgg.sh
    ```
 10. Make a directory for combined plots outside the directory where bin wise limit calculation was done and `cd` to this directory.
 11. Move the contents of the directory `CombinedScripts` to the current directory.
-12. In the current directory make a directory where the combined cards will be stored. Move the script `combineCards.sh` to this directory and make it executable with         `chmod`
-13. Execute: `./run_makeplots.sh <path to bin-wise directory> <combine cards directory made in step 12>` 
+12. In the current directory make a directory where the combined cards will be stored. Move the script `combineCards.sh` to this directory and make it executable with     `chmod`
+13. Execute: 
+    ```
+    ./run_makeplots.sh <path_to_bin-wise_directory> <combined_cards_directory_made_in_step_12>
+    ```
    
