@@ -36,22 +36,17 @@
         std::vector<edm::Ptr<flashgg::Muon> > goodMuons;
         for( unsigned int muonIndex = 0; muonIndex < muonPointers.size(); muonIndex++ ) {
             Ptr<flashgg::Muon> muon = muonPointers[muonIndex];
-
-            /*                                                                                                                                                                                              
-            std::cout << " Muon index " << muonIndex << " has pt eta weight: "                                                                                                                              
-                      << muon->pt() << " " << muon->eta() << " "                                                                                                                                            
-                      << muon->centralWeight() << std::endl;                                                                                                                                                
-            auto weightList = muon->weightList();                                                                                                                                                           
-            for( unsigned int i = 0 ; i < weightList.size() ; i++ ) {                                                                                                                                       
-                std::cout << "    " << weightList[i] << " " << muon->weight( weightList[i] );                                                                                                               
-            }                                                                                                                                                                                               
-            std::cout << std::endl;                                                                                                                                                                         
+           /*                                                                                                                                                                       std::cout << " Muon index " << muonIndex << " has pt eta weight: "                                                                                                               << muon->pt() << " " << muon->eta() << " "                                                                                                                             << muon->centralWeight() << std::endl;                                                                                                                                                
+             auto weightList = muon->weightList();                                                                                                                                                           
+             for( unsigned int i = 0 ; i < weightList.size() ; i++ ) {                                                                                                                                     
+                std::cout << "    " << weightList[i] << " " << muon->weight( weightList[i] );                                                                                        }                                                                                                                                                                                               
+             std::cout << std::endl;
             */
+            
+      if( fabs( muon->eta() ) > muonEtaThreshold ) continue;
+      if( muon->pt() < muonPtThreshold ) continue;
 
-            if( fabs( muon->eta() ) > muonEtaThreshold ) continue;
-            if( muon->pt() < muonPtThreshold ) continue;
-
-            int vtxInd = 0;
+      int vtxInd = 0;
             double dzmin = 9999;
             for( size_t ivtx = 0 ; ivtx < vertexPointers.size(); ivtx++ ) {
                 Ptr<reco::Vertex> vtx = vertexPointers[ivtx];
@@ -62,29 +57,31 @@
                 }
             }
 
-            Ptr<reco::Vertex> best_vtx = vertexPointers[vtxInd];
+      Ptr<reco::Vertex> best_vtx = vertexPointers[vtxInd];
 
-            if( !muon::isLooseMuon( *muon ) ) continue;
-            //if( !muon::isSoftMuon( *muon, *best_vtx ) ) continue;
+      if( !muon::isLooseMuon( *muon ) ) continue;
+      //if( !muon::isSoftMuon( *muon, *best_vtx ) ) continue;
             
-            double muPFIsoSumRel = ( muon->pfIsolationR04().sumChargedHadronPt
-                                     + max( 0.,muon->pfIsolationR04().sumNeutralHadronEt
-                                            + muon->pfIsolationR04().sumPhotonEt - 0.5 * muon->pfIsolationR04().sumPUPt ) ) / ( muon->pt() );
+      double muPFIsoSumRel = ( muon->pfIsolationR04().sumChargedHadronPt
+                               + max( 0.,muon->pfIsolationR04().sumNeutralHadronEt
+                               + muon->pfIsolationR04().sumPhotonEt - 0.5 * muon->pfIsolationR04().sumPUPt ) ) / ( muon->pt() );
 
-            float dRPhoLeadMuon = deltaR( muon->eta(), muon->phi(), dipho->leadingPhoton()->superCluster()->eta(), dipho->leadingPhoton()->superCluster()->phi() ) ;
-            float dRPhoSubLeadMuon = deltaR( muon->eta(), muon->phi(), dipho->subLeadingPhoton()->superCluster()->eta(),      dipho->subLeadingPhoton()->superCluster()->phi() );
+      float dRPhoLeadMuon = deltaR( muon->eta(), muon->phi(), dipho->leadingPhoton()->superCluster()->eta(), dipho->leadingPhoton()->superCluster()->phi() ) ;
+      float dRPhoSubLeadMuon = deltaR( muon->eta(), muon->phi(), dipho->subLeadingPhoton()->superCluster()->eta(),      dipho->subLeadingPhoton()->superCluster()->phi() );
 
-            if( dRPhoLeadMuon < dRPhoLeadMuonThreshold || dRPhoSubLeadMuon < dRPhoSubLeadMuonThreshold ) continue;
-            if( muPFIsoSumRel > muPFIsoSumRelThreshold ) continue;
+      if( dRPhoLeadMuon < dRPhoLeadMuonThreshold || dRPhoSubLeadMuon < dRPhoSubLeadMuonThreshold ) continue;
+      if( muPFIsoSumRel > muPFIsoSumRelThreshold ) continue;
 
-            goodMuons.push_back( muon );
-        }
-        return goodMuons;
-    }
- ``` 
- 
-  
+      goodMuons.push_back( muon );
+      }
+      
+       return goodMuons;
    
+   }
+   
+   ```
+ 
+ 
 4. Build: `scram b -j 10`
 
 5. To run:
