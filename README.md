@@ -22,6 +22,12 @@
    cp MonoHiggsToGG/analysis/addfiles/LeptonSelection.cc flashgg/Taggers/src/LeptonSelection_MHgg.cc
    ```
    
+   ```
+   std::vector<edm::Ptr<flashgg::Muon> > selectLooseMuons( const std::vector<edm::Ptr<flashgg::Muon> > &muonPointers, Ptr<flashgg::DiPhotonCandidate> dipho,
+            const std::vector<edm::Ptr<reco::Vertex> > &vertexPointers, double muonEtaThreshold, double muonPtThreshold, double muPFIsoSumRelThreshold,
+            double dRPhoLeadMuonThreshold, double dRPhoSubLeadMuonThreshold );
+   ```
+   
 4. Build: `scram b -j 10`
 
 5. To run:
