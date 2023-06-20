@@ -24,6 +24,7 @@ Instructions:
 12. In the current directory make a directory where the combined cards will be stored. Move the script `combineCards.sh` to this directory and make it executable with     `chmod`
 13. Execute: 
     ```
+    cmsenv
     ./run_makeplots.sh <path_to_bin-wise_directory> <combined_cards_directory_made_in_step_12>
     ```
    
