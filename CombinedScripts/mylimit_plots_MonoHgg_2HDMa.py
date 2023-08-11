@@ -567,7 +567,7 @@ class LimitPlot(PlotApp):
         expected95.GetXaxis().SetMoreLogLabels()
         expected68.Draw("E3L")
         expected.Draw("L")
-        l = ROOT.TLine(200,1,600,1)
+        l = ROOT.TLine(200,1,900,1)
         l.SetLineColor(ROOT.kRed)
         l.Draw("L")
         #kappa = "0."+coup[1:]
