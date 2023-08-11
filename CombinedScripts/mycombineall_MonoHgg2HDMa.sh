@@ -115,7 +115,7 @@ outputs=""
 # m1 = mDM or mA
 # m2 = mZp
 for m1 in 150; do
-  for m2 in {200,300,400,500,600}; do
+  for m2 in {200,300,400,500,600,700,800,900}; do
     card=dataCard_sig_${model}_mA${m2}_${m1name}${m1}_13TeV.txt
     binary=$(echo $card | sed 's%.txt$%.root%')
     signame=$(echo $card | sed 's%.*MonoHgg_%%; s%.txt%%')
