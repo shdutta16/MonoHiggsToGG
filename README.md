@@ -4,7 +4,7 @@ Scripts for optimized bin calculation, categorization of events and limit calcul
 
 Instructions:
 
-1. Pull the repo: `git pull MonoHiggsToGG optimizedBinScripts`
+1. Clone the repo: `git clone MonoHiggsToGG optimizedBinScripts`
 2. Copy the contents of the directory `BinwiseScripts` to the directory where bin-wise limit calculation will be done.
 3. Copy the contents of the directory `CombinedScripts` to the directory where the combine calculation (combining the limits of all bins or categories) will be done. 
 4. If the calculation is being done for simple DNN (parametric DNN) then keep the file `run_fitterFormatting_DNNcat_array_DNN.sh`          (`run_fitterFormatting_DNNcat_array_paraDNN.sh`) and delete the other.
