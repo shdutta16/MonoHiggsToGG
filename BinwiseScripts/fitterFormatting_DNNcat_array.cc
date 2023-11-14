@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <fstream>
 
 using namespace std;
 
@@ -632,11 +633,26 @@ void fitterFormatting( std::string dnnBins,
     fileNew->Close();
     fileOrig->cd();
     fileOrig->Close();
+    
+
+    
+    ofstream f_effOut;
+
+    f_effOut.open("effOut_" + theSample + ".txt");
+    f_effOut << theSample << std::endl;
 
     for( int iDNN=0; iDNN<n_dnnBins; iDNN++ ){
-        std::cout << "DNNbin " << iDNN << ": "
-                  << (double)dnnCount[iDNN]/(double)nentriesOrig*100. << "%" << std::endl;
+
+      std::cout << "DNNbin " << iDNN << ": "
+		<< (double)dnnCount[iDNN]/(double)nentriesOrig*100. << "%" << std::endl;
+
+      f_effOut << iDNN << "   "
+               << dnnCount[iDNN] << "   "
+               << (double)dnnCount[iDNN]/(double)nentriesOrig*100.
+               << std::endl;
     }
+
+    f_effOut.close();
 
 
 }// end fitterFormatting
