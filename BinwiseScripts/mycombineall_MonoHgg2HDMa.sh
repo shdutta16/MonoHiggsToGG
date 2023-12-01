@@ -129,7 +129,7 @@ for m1 in 150; do
 	filename=higgsCombine${namestr}.${method}.mH${m2}.root
     fi
     
-    log=combine_log_${method}_${label}_mA${mass}.log
+    log=combine_log_${method}_${label}_mA${m2}_ma${m1}.log
     set -x
     if [[ -z $dry ]] && ( [[ -z $cont ]] || [[ ! -f $filename ]] ); then 
 	if [[ -f $binary ]] && [[ $binary -nt $card ]]; then
