@@ -551,8 +551,8 @@ class LimitPlot(PlotApp):
         if options.model=="2HDM":
             canv  = ROOT.TCanvas("limits_2HDM_mA%s%s%s"%(options.mDM,options.model,options.addName),"limits_2HDM_mA%s%s%s"%(options.mDM,options.model,options.addName)) #MARGARET
         if options.model=="2HDMa":
-            canv  = ROOT.TCanvas("limits_2HDMa_ma%s%s%s"%(options.mDM,options.model,options.addName),"limits_2HDMa_ma%s%s%s"%(options.mDM,options.model,options.addName)) #MARGARET
-        canv.SetLogx()
+            canv  = ROOT.TCanvas("limits_2HDMa_ma%s_%s%s"%(options.mDM,options.model,options.addName),"limits_2HDMa_ma%s%s%s"%(options.mDM,options.model,options.addName)) #MARGARET
+        #canv.SetLogx()
         canv.SetLogy()
         canv.SetGridx()
         canv.SetGridy()
@@ -600,11 +600,13 @@ class LimitPlot(PlotApp):
         self.graphs.extend([observed,expected,expected68,expected95])
         
         #self.keep( [canv,theo,observed,expected,expected68,expected95] )
-        self.keep( [canv,l,observed,expected,expected68,expected95] )
+        ##self.keep( [canv,l,observed,expected,expected68,expected95] )   #SHUBHAM
         self.format(canv,options.postproc)
         if options.model=="BARY": canv.SaveAs("%slimits_%s_m%s%s.png"%(options.outdir,options.model,options.mDM,options.addName)) #MARGARET
         if options.model=="2HDM": canv.SaveAs("%slimits_%s_m%s%s.png"%(options.outdir,options.model,options.mDM,options.addName)) #MARGARET
-        if options.model=="2HDMa": canv.SaveAs("%slimits_%s_m%s%s.png"%(options.outdir,options.model,options.mDM,options.addName)) 
+        if options.model=="2HDMa": canv.SaveAs("%slimits_%s_ma%s%s.png"%(options.outdir,options.model,options.mDM,options.addName)) 
+        if options.model=="2HDMa": canv.SaveAs("%slimits_%s_ma%s%s.pdf"%(options.outdir,options.model,options.mDM,options.addName))  #SHUBHAM
+        if options.model=="2HDMa": canv.SaveAs("%slimits_%s_ma%s%s.root"%(options.outdir,options.model,options.mDM,options.addName)) #SHUBHAM  
 
     def plotSummary(self,options):
       print self.compare
@@ -692,7 +694,7 @@ class LimitPlot(PlotApp):
           ROOT.gPad.SetBottomMargin(bottom)
         else:
           ROOT.gPad.SetBottomMargin(0.04)
-        ROOT.gPad.SetLogx()
+        #ROOT.gPad.SetLogx()
         
         exp0 = map(lambda x: x[0][nc-ic-1], expected0)
         exp = map(lambda x: x[0][nc-ic-1], expected)
@@ -891,7 +893,7 @@ class LimitPlot(PlotApp):
         if len(options.x_range) != 0:
           g0.GetXaxis().SetRangeUser(*options.x_range)
           ## g0.GetXaxis().SetLimits(*options.x_range)
-        ROOT.gPad.SetLogx()
+        #ROOT.gPad.SetLogx()
         g0.GetXaxis().SetMoreLogLabels()
 
         leghead = copy(options.legend)        
@@ -1019,7 +1021,7 @@ class LimitPlot(PlotApp):
         g0.GetXaxis().SetRangeUser(xmin,xmax)
         g0.GetXaxis().SetMoreLogLabels()
           
-        canv.SetLogx()
+        #canv.SetLogx()
         if options.do_pvalues:
             canv.SetLogy()
             g0.GetYaxis().SetRangeUser(1e-3,0.55)
@@ -1099,7 +1101,7 @@ class LimitPlot(PlotApp):
         xmin,xmax = options.x_range
         canv  = ROOT.TCanvas("pvalues_k%s"%coup,"pvalues_k%s"%coup)
         canv.SetLogy()
-        canv.SetLogx()
+        #canv.SetLogx()
         ## legend = ROOT.TLegend(0.5,0.6,0.8,0.75)
         ## legend = ROOT.TLegend(0.6,0.6,0.9,0.75)
         ## legend = ROOT.TLegend(0.56,0.6,0.86,0.75)
