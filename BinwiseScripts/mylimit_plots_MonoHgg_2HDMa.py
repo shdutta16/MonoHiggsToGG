@@ -552,7 +552,7 @@ class LimitPlot(PlotApp):
             canv  = ROOT.TCanvas("limits_2HDM_mA%s%s%s"%(options.mDM,options.model,options.addName),"limits_2HDM_mA%s%s%s"%(options.mDM,options.model,options.addName)) #MARGARET
         if options.model=="2HDMa":
             canv  = ROOT.TCanvas("limits_2HDMa_ma%s_%s%s"%(options.mDM,options.model,options.addName),"limits_2HDMa_ma%s%s%s"%(options.mDM,options.model,options.addName)) #MARGARET
-        canv.SetLogx()
+        #canv.SetLogx()
         canv.SetLogy()
         canv.SetGridx()
         canv.SetGridy()
